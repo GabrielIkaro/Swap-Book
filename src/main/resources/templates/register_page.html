@@ -28,6 +28,13 @@
           <form action="https://httpbin.org/post" method="POST" class="form login">
       
             <div class="form__field">
+              <label for="register__name"><svg class="icon">
+                  <use xlink:href="#icon-user"></use>
+                </svg><span class="hidden">Nome</span></label>
+              <input autocomplete="username" id="register__name" type="text" name="name" class="form__input" placeholder="Seu nome" required>
+            </div>
+
+            <div class="form__field">
               <label for="register__username"><svg class="icon">
                   <use xlink:href="#icon-user"></use>
                 </svg><span class="hidden">Username</span></label>
@@ -45,7 +52,14 @@
               <label for="register__password"><svg class="icon">
                   <use xlink:href="#icon-lock"></use>
                 </svg><span class="hidden">Password</span></label>
-              <input id="register__password" type="password" name="password" class="form__input" placeholder="Password" required>
+              <input id="register__password" type="password" name="password" class="form__input" placeholder="Senha" required>
+            </div>
+
+            <div class="form__field">
+              <label for="register__password"><svg class="icon">
+                  <use xlink:href="#icon-lock"></use>
+                </svg><span class="hidden">Password</span></label>
+              <input id="register__password" type="password" name="password_confirm" class="form__input" placeholder="Confirme sua senha" required>
             </div>
       
             <div class="form__field">

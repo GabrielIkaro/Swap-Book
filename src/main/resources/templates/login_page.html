@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -25,13 +25,13 @@
       </nav>
         <div class="grid">
     
-          <form action="https://httpbin.org/post" method="POST" class="form login">
+          <form action="/login" method="post" class="form login" th:object="${loginRequest}">
       
             <div class="form__field">
               <label for="register__username"><svg class="icon">
                   <use xlink:href="#icon-user"></use>
                 </svg><span class="hidden">Username</span></label>
-              <input autocomplete="username" id="register__username" type="text" name="username" class="form__input" placeholder="Username" required>
+              <input autocomplete="username" id="register__username" type="text" name="login" class="form__input" placeholder="Username" required>
             </div>
       
             <div class="form__field">

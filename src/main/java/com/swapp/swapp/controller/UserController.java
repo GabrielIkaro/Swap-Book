@@ -28,5 +28,27 @@ public class UserController {
         model.addAttribute("loginRequest", new Users());
         return "login_page";
     }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute Users user){
+        System.out.println("register request:" + user);
+        Users registereduser = usersService.registerUser(user.getLogin(), user.getPassword(), user.getEmail());
+        if(registereduser == null){
+            return "./";
+        }else{
+            return "login_page";
+        }
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute Users user, Model model){
+        Users authenticateduser = usersService.authenticate(user.getLogin(), user.getPassword());
+
+        if(authenticateduser != null){
+            return "newbook_page";
+        }else{
+            return "error_page";
+        }
+    }
     
 }

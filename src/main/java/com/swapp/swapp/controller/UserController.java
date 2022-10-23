@@ -29,12 +29,4 @@ public class UserController {
         return "login_page";
     }
     
-
-    @PostMapping("/register")
-    public String register(@ModelAttribute Users users){
-
-        System.out.println("register request: " + users);
-        Users regist = usersService.registerUser(users.getLogin(), users.getPassword(), users.getEmail());
-        return regist == null ? "error_page" : "redirect/login";
-    }
 }

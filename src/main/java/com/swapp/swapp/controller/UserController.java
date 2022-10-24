@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping("/register")
     public String register(@ModelAttribute Users user){
         System.out.println("register request:" + user);
-        Users registereduser = usersService.registerUser(user.getLogin(), user.getPassword(), user.getEmail());
+        Users registereduser = usersService.createUser(user);
         if(registereduser == null){
             return "./";
         }else{

@@ -36,7 +36,7 @@ public class UserController {
         if(registereduser == null){
             return "./";
         }else{
-            return "login_page";
+            return "redirect:login";
         }
     }
 
@@ -45,7 +45,7 @@ public class UserController {
         Users authenticateduser = usersService.authenticate(user.getLogin(), user.getPassword());
 
         if(authenticateduser != null){
-            return "newbook_page";
+            return "redirect:newbook";
         }else{
             return "error_page";
         }

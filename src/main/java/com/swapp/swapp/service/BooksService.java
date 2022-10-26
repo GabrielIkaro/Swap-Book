@@ -1,5 +1,7 @@
 package com.swapp.swapp.service;
 
+import java.time.Year;
+
 import org.springframework.stereotype.Service;
 
 import com.swapp.swapp.model.Books;
@@ -14,12 +16,12 @@ public class BooksService{
         this.books_repository = books_repository;
     }
 
-    public Books registerBook(String titulo, String autor, String isbn){
-        if(titulo != null && autor != null){
+    public Books registerBook(String titulo, String isbn, Year publicacao){
+        if(titulo != null && publicacao != null){
             Books book = new Books();
             book.setTitulo(titulo);
-            book.setAutor(autor);
-            book.setISBN(isbn);
+            book.setPublicacao(publicacao);
+            book.setIsbn(isbn);
             return books_repository.save(book);
         }else{
             return null;

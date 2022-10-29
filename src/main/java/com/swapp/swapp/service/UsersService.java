@@ -17,6 +17,7 @@ import com.swapp.swapp.model.Users;
 import com.swapp.swapp.repository.UsersRepository;
 
 @Service
+@Transactional
 public class UsersService implements UserDetailsService{
 
     @Autowired

@@ -7,36 +7,28 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import com.swapp.swapp.service.UsersService;
 
 @Configuration
-public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+public class MySecurityConfig{
     
-    @Autowired
-    final UsersService userService;
-
-    public MySecurityConfig(UsersService userService) {
-        this.userService = userService;
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
-            .authorizeRequests()
-            .antMatchers("/newbook").authenticated()
-            .antMatchers("/login", "/index", "/register").permitAll()
-            .and()
-            .formLogin()
-            .permitAll()
-            .and()
-            .csrf().disable();
-    }
+        .authorizeRequests()
+        .antMatchers("/newbook", "/index").authenticated()
+        .antMatchers("/login", "/register").permitAll()
+        .and()
+        .formLogin(form ->form
+                    .loginPage("/login")
+                    .permitAll()  
+                    .defaultSuccessUrl("/newbook", true)
+        )
+        .csrf().disable();
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-            .passwordEncoder(PasswordEncoder());
+        return http.build();
     }
 
     @Bean

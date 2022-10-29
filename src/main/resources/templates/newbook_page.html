@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -24,7 +24,7 @@
       </nav>
         <div class="grid">
     
-          <form action="https://httpbin.org/post" method="POST" class="form login">
+          <form action="/newbook" method="post" class="form login" th:object="${bookRequest}">
       
             <div class="form__field">
               <label for="register__title"><svg class="icon">

@@ -16,6 +16,15 @@ public class BooksService{
         this.books_repository = books_repository;
     }
 
+    public Books fillBook(String titulo, String publicacao){
+        Books book = new Books();
+
+        book.setTitulo(titulo);
+        book.setIsbn(publicacao);
+
+        return book;
+    }
+
     public Books registerBook(String titulo, String isbn, Year publicacao){
         if(titulo != null && publicacao != null){
             Books book = new Books();

@@ -31,10 +31,9 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute Users user){
-        System.out.println("register request:" + user);
         Users registereduser = usersService.createUser(user);
         if(registereduser == null){
-            return "./";
+            return "redirect:register";
         }else{
             return "redirect:login";
         }
@@ -45,7 +44,7 @@ public class UserController {
         Users authenticateduser = usersService.authenticate(user.getLogin(), user.getPassword());
 
         if(authenticateduser != null){
-            return "redirect:newbook";
+            return "newbook_page";
         }else{
             return "error_page";
         }

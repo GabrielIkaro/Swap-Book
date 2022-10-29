@@ -43,6 +43,7 @@ public class Books {
     Boolean status;
     Year publicacao;
     
+    
     public Integer getId() {
         return id;
     }

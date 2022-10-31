@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.json.*;
+
 @Entity
 @Table(name = "books_table")
 public class Books {
@@ -42,7 +44,8 @@ public class Books {
     String titulo;
     Boolean status;
     Year publicacao;
-    
+
+    JSONObject json;
     
     public Integer getId() {
         return id;
@@ -163,6 +166,13 @@ public class Books {
                 + ", titulo=" + titulo + ", status=" + status + ", publicacao=" + publicacao + "]";
     }
 
+    public JSONObject request(String titulo, String autor){
+        RequestThread thread = new RequestThread(autor, titulo);
+        thread.start();
+        json = thread.getJSON();
+    }
     
-    
+    public void catchInformation(){
+        editora = json.getString(publisher);
+    }
 }

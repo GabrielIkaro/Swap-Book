@@ -44,7 +44,7 @@ public class UserController {
         Users authenticateduser = usersService.authenticate(user.getLogin(), user.getPassword());
 
         if(authenticateduser != null){
-            return "newbook_page";
+            return "redirect:perfil";
         }else{
             return "error_page";
         }

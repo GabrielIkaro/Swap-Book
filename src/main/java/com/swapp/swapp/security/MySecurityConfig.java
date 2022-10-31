@@ -1,15 +1,13 @@
 package com.swapp.swapp.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.authentication.builders.*;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.swapp.swapp.service.UsersService;
+
 
 @Configuration
 public class MySecurityConfig{
@@ -18,13 +16,13 @@ public class MySecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
         .authorizeRequests()
-        .antMatchers("/newbook", "/index").authenticated()
+        .antMatchers("/newbook", "/perfil").authenticated()
         .antMatchers("/login", "/register").permitAll()
         .and()
         .formLogin(form ->form
                     .loginPage("/login")
                     .permitAll()  
-                    .defaultSuccessUrl("/newbook", true)
+                    .defaultSuccessUrl("/perfil", true)
         )
         .csrf().disable();
 

@@ -3,6 +3,7 @@ package com.swapp.swapp.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class LinguaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @OneToMany(mappedBy="lingua")
+    @OneToMany(mappedBy="lingua", cascade = {CascadeType.ALL})
     private List<Books> bookslist;
 
     String nome;

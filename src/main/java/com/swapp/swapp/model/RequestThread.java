@@ -1,4 +1,4 @@
-package main.java.com.swapp.swapp.model;
+package com.swapp.swapp.model;
 
 import java.io.IOException;
 import java.net.URI;

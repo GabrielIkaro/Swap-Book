@@ -2,6 +2,7 @@ package com.swapp.swapp.model;
 
 import java.time.Year;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,19 +25,19 @@ public class Books {
     Integer id;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "editora.id")
     private EditoraModel editora;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "lingua.id")
     private LinguaModel lingua;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "categoria.id")
     private CategoriaModel categoria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user.id")
     private Users user;
 
@@ -45,7 +46,6 @@ public class Books {
     Boolean status;
     Year publicacao;
 
-    JSONObject json;
     
     public Integer getId() {
         return id;
@@ -94,6 +94,13 @@ public class Books {
     }
     public void setPublicacao(Year publicacao) {
         this.publicacao = publicacao;
+    }
+    
+    public CategoriaModel getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(CategoriaModel categoria) {
+        this.categoria = categoria;
     }
     @Override
     public int hashCode() {
@@ -169,10 +176,11 @@ public class Books {
     public JSONObject request(String titulo, String autor){
         RequestThread thread = new RequestThread(autor, titulo);
         thread.start();
-        json = thread.getJSON();
+        JSONObject json = thread.getJSON();
+        return json;
     }
     
     public void catchInformation(){
-        editora = json.getString(publisher);
+        //editora = json.getString(publisher);
     }
 }

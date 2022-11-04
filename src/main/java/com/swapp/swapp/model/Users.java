@@ -2,11 +2,13 @@ package com.swapp.swapp.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +25,11 @@ public class Users implements UserDetails, Serializable {
     String login;
     String password;
     String email;
+
+    @OneToMany(mappedBy="user")
+    private List<Books> bookslist;
+
+    
     
     public Integer getId() {
         return id;
@@ -120,6 +127,12 @@ public class Users implements UserDetails, Serializable {
     public boolean isEnabled() {
         // TODO Auto-generated method stub
         return true;
+    }
+    public List<Books> getBookslist() {
+        return bookslist;
+    }
+    public void setBookslist(List<Books> bookslist) {
+        this.bookslist = bookslist;
     }
 
     

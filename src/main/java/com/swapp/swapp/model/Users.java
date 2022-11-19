@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +23,13 @@ public class Users implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @NotEmpty(message="User login cannot be empty.")
     String login;
+    @NotEmpty(message="User password cannot be empty.")
     String password;
+
+    String confirm_password;
+    @NotEmpty(message="User email cannot be empty.")
     String email;
 
     @OneToMany(mappedBy="user")
@@ -63,7 +69,9 @@ public class Users implements UserDetails, Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((login == null) ? 0 : login.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((confirm_password == null) ? 0 : confirm_password.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((bookslist == null) ? 0 : bookslist.hashCode());
         return result;
     }
     @Override
@@ -90,10 +98,20 @@ public class Users implements UserDetails, Serializable {
                 return false;
         } else if (!password.equals(other.password))
             return false;
+        if (confirm_password == null) {
+            if (other.confirm_password != null)
+                return false;
+        } else if (!confirm_password.equals(other.confirm_password))
+            return false;
         if (email == null) {
             if (other.email != null)
                 return false;
         } else if (!email.equals(other.email))
+            return false;
+        if (bookslist == null) {
+            if (other.bookslist != null)
+                return false;
+        } else if (!bookslist.equals(other.bookslist))
             return false;
         return true;
     }
@@ -133,6 +151,12 @@ public class Users implements UserDetails, Serializable {
     }
     public void setBookslist(List<Books> bookslist) {
         this.bookslist = bookslist;
+    }
+    public String getConfirm_password() {
+        return confirm_password;
+    }
+    public void setConfirm_password(String confirm_password) {
+        this.confirm_password = confirm_password;
     }
 
     

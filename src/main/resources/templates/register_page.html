@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sf="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -25,21 +25,21 @@
       </nav>
         <div class="grid">
     
-          <form action="/register" method="post" th:action="@{/register}" class="form login" th:object="${registerRequest}">
+          <form action="/register" method="post" th:action="@{/register}" class="form login" th:object="${user}">
       
 
             <div class="form__field">
               <label for="register__username"><svg class="icon">
                   <use xlink:href="#icon-user"></use>
                 </svg><span class="hidden">Username</span></label>
-              <input autocomplete="username" id="register__username" type="text" th:field="*{login}" name="login" class="form__input" placeholder="Username" required>
+              <input autocomplete="username" id="register__username" type="text" th:value="*{login}" name="login" class="form__input" placeholder="Username" required>
             </div>
 
             <div class="form__field">
               <label for="register__email"><svg class="icon">
                   <use xlink:href="#icon-envelope"></use>
                 </svg><span class="hidden">E-mail</span></label>
-              <input id="register__email" type="email" name="email" th:field="*{email}" class="form__input" placeholder="E-mail" required>
+              <input id="register__email" type="email" name="email" th:field="*{email}" th:value="userEmail" class="form__input" placeholder="E-mail" required>
             </div>
       
             <div class="form__field">
@@ -49,10 +49,20 @@
               <input id="register__password" type="password" name="password" th:field="*{password}" class="form__input" placeholder="Senha" required>
             </div>
 
+            <div class="form__field">
+              <label for="confirm__password"><svg class="icon">
+                  <use xlink:href="#icon-lock"></use>
+                </svg><span class="hidden">register_Password</span></label>
+              <input id="confirm__password" type="password" name="password" th:field="*{confirm_password}" class="form__input" placeholder="Confirme sua senha" required>
+            </div>
+
       
             <div class="form__field">
               <input type="submit" value="Cadastrar">
             </div>
+
+            <span th:if="${globalError != null}" th:each="err : ${globalError}" th:text="${err}" class="error"></span>
+
       
           </form>
       

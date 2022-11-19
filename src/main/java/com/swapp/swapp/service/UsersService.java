@@ -28,17 +28,23 @@ public class UsersService implements UserDetailsService{
 
 
     @Transactional
-    public Users createUser(Users user){
-        try {
-            if (!usersRepository.existsByEmail(user.getEmail())){
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
-                return usersRepository.save(user);
-            }else {
-                return null;
-            }
-        }catch (Exception e){
-            throw e;
+    public String createUser(Users user){
+        String message = "";
+        if (usersRepository.existsByEmail(user.getEmail())){
+            message += "Email já cadastrado.\r\n";
         }
+        if (usersRepository.existsByLogin(user.getLogin())){
+            message += "Usuário já existe.\r\n";
+        }
+        if (!user.getPassword().equals(user.getConfirm_password())){
+            message += "Confirmação de Senha não é igual a Senha.";
+        }
+
+        if (message.isEmpty()){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            usersRepository.save(user);
+        }
+        return message;
     }
 
     public List<Users> readUsers(){

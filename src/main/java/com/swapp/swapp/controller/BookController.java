@@ -18,6 +18,12 @@ public class BookController {
         return "newbook_page";
     }
 
+    @GetMapping("/book")
+    public String getBookPage(Model model) {
+        model.addAttribute("bookRequest", new LivroRequest());
+        return "livro_registro";
+    }
+
     @PostMapping("/newbook")
     public String register(@ModelAttribute LivroRequest l){
         l.getBookDetails("157231995X");

@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute Users user, Model model, BindingResult result){
+    public String login(@ModelAttribute Users user, Model model){
         Users authenticateduser = usersService.authenticate(user.getLogin(), user.getPassword());
 
         if(authenticateduser != null){

@@ -53,13 +53,14 @@
               <label for="confirm__password"><svg class="icon">
                   <use xlink:href="#icon-lock"></use>
                 </svg><span class="hidden">register_Password</span></label>
-              <input id="confirm__password" type="password" name="password" th:field="*{confirm_password}" class="form__input" placeholder="Confirme sua senha" required>
+              <input id="confirm__password" type="password" name="password" th:field="*{password}" class="form__input" placeholder="Confirme sua senha" required>
             </div>
 
       
             <div class="form__field">
               <input type="submit" value="Cadastrar">
             </div>
+
 
             <span th:if="${globalError != null}" th:each="err : ${globalError}" th:text="${err}" class="error"></span>
 

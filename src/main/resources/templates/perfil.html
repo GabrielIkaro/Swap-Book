@@ -103,7 +103,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as: </div>
-                        <div sec:authentication="name"></div>
+                        <div th:text="${userDetails.getLogin()}"></div>
                     </div>
                 </nav>
             </div>

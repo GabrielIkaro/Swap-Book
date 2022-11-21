@@ -1,6 +1,7 @@
 package com.swapp.swapp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,7 +34,10 @@ public class Users implements UserDetails, Serializable {
     String email;
 
     @OneToMany(mappedBy="user")
-    private List<Books> bookslist;
+    private List<Books> bookslist = new ArrayList<>();
+
+    @OneToMany(mappedBy="swiperUser")
+    private List<Swipe> swipelist = new ArrayList<>();
 
     
     
@@ -72,6 +76,7 @@ public class Users implements UserDetails, Serializable {
         result = prime * result + ((confirm_password == null) ? 0 : confirm_password.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((bookslist == null) ? 0 : bookslist.hashCode());
+        result = prime * result + ((swipelist == null) ? 0 : swipelist.hashCode());
         return result;
     }
     @Override
@@ -112,6 +117,11 @@ public class Users implements UserDetails, Serializable {
             if (other.bookslist != null)
                 return false;
         } else if (!bookslist.equals(other.bookslist))
+            return false;
+        if (swipelist == null) {
+            if (other.swipelist != null)
+                return false;
+        } else if (!swipelist.equals(other.swipelist))
             return false;
         return true;
     }
@@ -157,6 +167,12 @@ public class Users implements UserDetails, Serializable {
     }
     public void setConfirm_password(String confirm_password) {
         this.confirm_password = confirm_password;
+    }
+    public List<Swipe> getSwipelist() {
+        return swipelist;
+    }
+    public void setSwipelist(List<Swipe> swipelist) {
+        this.swipelist = swipelist;
     }
 
     

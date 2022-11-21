@@ -1,14 +1,17 @@
 package com.swapp.swapp.service;
 
 import com.swapp.swapp.repository.CategoriaRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.swapp.swapp.model.CategoriaModel;
 
+@Service
 public class CategoriaService{
-    private final CategoriaRepository categoriarepository;
+    @Autowired
+    private CategoriaRepository categoriarepository;
 
-    public CategoriaService(CategoriaRepository categoriarepository){
-        this.categoriarepository = categoriarepository;
-    }
 
     public CategoriaModel CategoriaFactory(String name){
         if(categoriarepository.existsByNome(name)){

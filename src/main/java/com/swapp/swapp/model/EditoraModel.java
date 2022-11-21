@@ -1,5 +1,6 @@
 package com.swapp.swapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class EditoraModel {
     String nome;
 
     @OneToMany(mappedBy="editora")
-    private List<Books> bookslist;
+    private List<Books> bookslist = new ArrayList<Books>();
 
     
 

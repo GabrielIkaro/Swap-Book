@@ -1,6 +1,7 @@
 package com.swapp.swapp.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class LinguaModel {
     Integer id;
 
     @OneToMany(mappedBy="lingua", cascade = {CascadeType.ALL})
-    private List<Books> bookslist;
+    private List<Books> bookslist = new ArrayList<Books>();
 
     String nome;
 

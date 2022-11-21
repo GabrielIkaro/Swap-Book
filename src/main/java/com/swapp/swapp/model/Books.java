@@ -1,7 +1,9 @@
 package com.swapp.swapp.model;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.json.*;
@@ -42,12 +47,33 @@ public class Books {
     @JoinColumn(name = "user.id")
     private Users user;
 
-    String isbn;
-    String titulo;
-    Boolean status;
-    Date publicacao;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "autor.id")
+    private AutorModel autor;
+
+    @OneToMany(mappedBy="shownBook")
+    private List<Swipe> swipelist = new ArrayList<>();
+
+    private String descricao; 
+
+    private String isbn;
+    private String titulo;
+    private Boolean status;
+    private String publicacao;
 
     
+    public List<Swipe> getSwipelist() {
+        return swipelist;
+    }
+    public void setSwipelist(List<Swipe> swipelist) {
+        this.swipelist = swipelist;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     public Integer getId() {
         return id;
     }
@@ -63,9 +89,17 @@ public class Books {
     public LinguaModel getLingua() {
         return lingua;
     }
+    public void setAutor(AutorModel autor) {
+        this.autor = autor;
+    }
+
+    public AutorModel getAutor() {
+        return autor;
+    }
     public void setLingua(LinguaModel lingua) {
         this.lingua = lingua;
     }
+
     public Users getUser() {
         return user;
     }
@@ -90,10 +124,10 @@ public class Books {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    public Date getPublicacao() {
+    public String getPublicacao() {
         return publicacao;
     }
-    public void setPublicacao(Date publicacao) {
+    public void setPublicacao(String publicacao) {
         this.publicacao = publicacao;
     }
     
@@ -110,7 +144,11 @@ public class Books {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((editora == null) ? 0 : editora.hashCode());
         result = prime * result + ((lingua == null) ? 0 : lingua.hashCode());
+        result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
+        result = prime * result + ((autor == null) ? 0 : autor.hashCode());
+        result = prime * result + ((swipelist == null) ? 0 : swipelist.hashCode());
+        result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
         result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
         result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -141,10 +179,30 @@ public class Books {
                 return false;
         } else if (!lingua.equals(other.lingua))
             return false;
+        if (categoria == null) {
+            if (other.categoria != null)
+                return false;
+        } else if (!categoria.equals(other.categoria))
+            return false;
         if (user == null) {
             if (other.user != null)
                 return false;
         } else if (!user.equals(other.user))
+            return false;
+        if (autor == null) {
+            if (other.autor != null)
+                return false;
+        } else if (!autor.equals(other.autor))
+            return false;
+        if (swipelist == null) {
+            if (other.swipelist != null)
+                return false;
+        } else if (!swipelist.equals(other.swipelist))
+            return false;
+        if (descricao == null) {
+            if (other.descricao != null)
+                return false;
+        } else if (!descricao.equals(other.descricao))
             return false;
         if (isbn == null) {
             if (other.isbn != null)

@@ -1,5 +1,6 @@
 package com.swapp.swapp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swapp.swapp.model.LinguaModel;
@@ -8,11 +9,9 @@ import com.swapp.swapp.repository.*;
 @Service
 public class LinguaService {
 
-    private final LinguaRepository linguarepository;
+    @Autowired
+    private LinguaRepository linguarepository;
 
-    public LinguaService(LinguaRepository linguarepository){
-        this.linguarepository = linguarepository;
-    }
 
     public LinguaModel LinguaFactory(String name){
         if(linguarepository.existsByNome(name)){

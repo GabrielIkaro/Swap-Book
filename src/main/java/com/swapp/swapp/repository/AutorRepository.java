@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.swapp.swapp.model.EditoraModel;
+import com.swapp.swapp.model.AutorModel;
 
 @Repository
-public interface EditoraRepository extends JpaRepository<EditoraModel, Integer> {
+public interface AutorRepository extends JpaRepository<AutorModel, Integer>{
     public boolean existsByNome(String nome);
-    Optional<EditoraModel> findByNome(String nome);
+    Optional<AutorModel> findByNome(String nome);
 }

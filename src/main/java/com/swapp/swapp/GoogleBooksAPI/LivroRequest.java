@@ -11,9 +11,8 @@ import reactor.core.publisher.Mono;
 
 public class LivroRequest {
 
-    public void getBookDetails(String isbn) {
+    public JsonNode getBookDetails(String isbn) {
         // Query the book database by ISBN code.
-        
         
 
         Mono<JsonNode> s = WebClient.create("https://www.googleapis.com")
@@ -24,7 +23,7 @@ public class LivroRequest {
       
 
         JsonNode  metaNode = s.block();
-        System.out.println(metaNode);
+        return metaNode;
    
       }
     

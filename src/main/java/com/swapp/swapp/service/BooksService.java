@@ -1,6 +1,7 @@
 package com.swapp.swapp.service;
 
 import java.time.Year;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class BooksService{
         return book;
     } */
 
-    public Books registerBook(Users user, String titulo, String isbn, Year publicacao, String lingua, String categoria,
+    public Books registerBook(Users user, String titulo, String isbn, Date publicacao, String lingua, String categoria,
                                 String editora){
         if(titulo != null && publicacao != null && lingua != null){
             Books book = new Books();

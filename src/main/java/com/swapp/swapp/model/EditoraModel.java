@@ -22,6 +22,8 @@ public class EditoraModel {
     @OneToMany(mappedBy="editora")
     private List<Books> bookslist;
 
+    
+
     public Integer getId() {
         return id;
     }

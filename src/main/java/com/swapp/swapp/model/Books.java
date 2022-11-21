@@ -1,6 +1,7 @@
 package com.swapp.swapp.model;
 
 import java.time.Year;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +45,7 @@ public class Books {
     String isbn;
     String titulo;
     Boolean status;
-    Year publicacao;
+    Date publicacao;
 
     
     public Integer getId() {
@@ -89,10 +90,10 @@ public class Books {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-    public Year getPublicacao() {
+    public Date getPublicacao() {
         return publicacao;
     }
-    public void setPublicacao(Year publicacao) {
+    public void setPublicacao(Date publicacao) {
         this.publicacao = publicacao;
     }
     
@@ -183,4 +184,10 @@ public class Books {
     public void catchInformation(){
         //editora = json.getString(publisher);
     }
+    public Books() {
+    }
+
+    
+
+    
 }

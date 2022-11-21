@@ -117,6 +117,8 @@ public class BooksService{
             publisher = j_publisher.asText();
         }
 
+        System.out.println("Editora: " + publisher);
+
         EditoraModel e = editoraService.EditoraFactory(publisher);
 
         e.getBookslist().add(book);

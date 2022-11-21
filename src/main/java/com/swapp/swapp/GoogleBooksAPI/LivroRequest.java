@@ -17,7 +17,7 @@ public class LivroRequest {
 
         Mono<JsonNode> s = WebClient.create("https://www.googleapis.com")
                         .get()
-                        .uri("/books/v1/volumes?q=" + isbn)
+                        .uri("/books/v1/volumes?q=ISBN:" + isbn)
                         .retrieve()
                         .bodyToMono(JsonNode.class);
       

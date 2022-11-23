@@ -62,5 +62,9 @@ public class UsersService implements UserDetailsService{
         return user;
     }
 
+    public Users findUser(String name){
+        return usersRepository.findByLogin(name).orElse(null);
+    }
+
     
 }

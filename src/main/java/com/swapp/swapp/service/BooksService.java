@@ -127,8 +127,9 @@ public class BooksService{
         return book;
     }
 
-    public Books registerBook(Users user, String autor, String titulo, String isbn, String publicacao, String lingua, String categoria,
-                                String editora){
+    public Books registerBook(Books b, Users u){
+        b.setUser(u);
+        return books_repository.save(b);
         /*if(titulo != null && publicacao != null && lingua != null){
             Books book = new Books();
 
@@ -160,7 +161,7 @@ public class BooksService{
             book.setIsbn(isbn);
             return books_repository.save(book);
         }else{*/
-            return null;
+            //return null;
         //}
     }   
 }

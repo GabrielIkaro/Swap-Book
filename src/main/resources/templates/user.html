@@ -52,7 +52,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="/user">Configurações</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Geolocalização</a>
+                                    <a class="nav-link" href="/geo">Geolocalização</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -61,21 +61,12 @@
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="">
-                                        Estante
-                                    </a>
-                                    <a class="nav-link" href="/newbook">
-                                        Novo Livro
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
+                                <a class="nav-link" href="">
+                                    Estante
+                                </a>
+                                <a class="nav-link" href="/newbook">
+                                    Novo Livro
+                                </a>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
@@ -96,65 +87,29 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Adicione seu Livro</h1>
+                        <h1 class="mt-4">Configurações de Perfil: </h1>
+                        <div class="input1">
+                            <h3>Login: </h3>
+                            <div th:text="${userDetails.getLogin()}"></div>
+                        </div>
+                        <div class="input1">
+                            <h3>Email: </h3>
+                            <div th:text="${userDetails.getEmail()}"></div>
+                        </div>
+                        <div class="input1">
+                            <h3>Quantidade de livros deste usuário: </h3>
+                            <div th:text="${booksquantity}"></div>
+                        </div>
+                        <div>
+                            <tr>
+                             <td th:each="book : ${books}" th:value="${book.titulo}" th:text="${book.titulo}"></td>
+                            </tr>
+                        </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
                         </ol>
                     </div>
-                    <label for="card bg-primary text-white mb-4" class="instructions">Você pode pesquisar livros usando o título e nome do autor ou seu ISBN, assim como pode preencher as informações manualmente.</label>
-                    <form action="/newbook" method="post" th:action="@{/newbook}"  th:object="${book}">
-                        <div>
-                            <div class="input1">
-                                <label class="book_label">Título</label>
-                                <input type="text" class="form-control" id="book_title" th:field="*{titulo}">
-                            </div>
-                            <div class="input1">
-                                <label class="book_label">Autor</label>
-                                <input type="text" class="form-control" id="autor_name" th:field="*{autor.nome}">
-                            </div>
-                            <div class="input1">
-                                <button type="submit" class="button_sub" name="action" value="search_autor">Pesquisar</button>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="book_isbn">
-                                <label class="book_label">ISBN</label>
-                                <input type="text" class="form-control" id="book_isbn" th:field="*{isbn}">
-                            </div>
-                            <div class="book_isbn">
-                                <button type="submit" class="button_sub" name="action" value="search_isbn">Pesquisar</button>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="input1">
-                                <label class="book_label">Editora</label>
-                                <input type="text" class="form-control" id="book_editora" th:field="*{editora.nome}">
-                            </div>
-                            <div class="input1">
-                                <label class="book_label">Gênero</label>
-                                <input type="text" class="form-control" id="book_genero" th:field="*{categoria.nome}">
-                            </div>
-                        </div>
-                        <div>
-                            <div class="input1">
-                                <label class="book_label">Língua</label>
-                                <input type="text" class="form-control" id="book_lingua" th:field="*{lingua.nome}">
-                            </div>
-                            <div class="input1">
-                                <label class="book_label">Publicação</label>
-                                <input type="date" class="form-control" name="lingua" id="book_publish" th:field="*{publicacao}">
-                            </div>
-                        </div>
-                        <div class="book_description">
-                            <label class="book_label">Descrição</label>
-                            <textarea type="text" class="description" id="book_description" name="descricao" rows="5" th:field="*{descricao}"></textarea>
-                        </div>
-                        <br/>
-                        <div class="book_isbn">
-                            <button type="submit" class="button_send" name="action" value="adicionar">Adicionar</button>
-                        </div>
-                        
-                    </form>
+                    
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

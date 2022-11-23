@@ -159,6 +159,9 @@ public class Users implements UserDetails, Serializable {
     public List<Books> getBookslist() {
         return bookslist;
     }
+    public int getBookNumbers(){
+        return bookslist.size();
+    }
     public void setBookslist(List<Books> bookslist) {
         this.bookslist = bookslist;
     }

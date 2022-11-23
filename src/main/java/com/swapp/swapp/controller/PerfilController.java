@@ -9,7 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.swapp.swapp.GoogleBooksAPI.GeolocationAPI;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.swapp.swapp.model.Users;
 import com.swapp.swapp.service.UsersService;
 
@@ -37,6 +40,16 @@ public class PerfilController {
 
     @GetMapping("/geo")
     public String getGeoPage(Model model){
+        return "geolocation";
+    }
+
+    @PostMapping("/geo")
+    public String getLocation(Model model){
+        GeolocationAPI g = new GeolocationAPI();
+        JsonNode j = g.getBookDetails("59612205");
+        String s = j.get("results").get(0).get("address_components").get(4).get("long_name").toString();
+        model.addAttribute("oi", s);
+
         return "geolocation";
     }
 

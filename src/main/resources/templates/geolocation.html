@@ -92,13 +92,12 @@
                             <div>
                                 <div class="input1">
                                     <label class="book_label">Título</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="ZIPCODE">
+                                    <input type="text" class="form-control" id="zip" placeholder="ZIPCODE" th:text="${oi}">
                                 </div>
                             </div>
                             <div class="book_isbn">
                                 <button type="submit" class="button_send" name="action" value="adicionar">Pesquisar</button>
                             </div>
-                            <textarea th:text=""></textarea>
                         </form>
 
                         <div>

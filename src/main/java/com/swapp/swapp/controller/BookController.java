@@ -54,8 +54,6 @@ public class BookController {
             if (action.equals("adicionar")){
                 s.registerBook(l, u);
             }else{
-                GeolocationAPI g = new GeolocationAPI();
-                g.getBookDetails("59612205");
             }
         }
 

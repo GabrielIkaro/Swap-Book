@@ -14,7 +14,7 @@ public class GeolocationAPI {
 
     private static final Object key = "AIzaSyBTpOsSkhnSEfNrAG3k_CH46HYTgIZ0g94";
     
-    public JsonNode getBookDetails(String zip) {
+    public JsonNode getGeoDetails(String zip) {
         // Query the book database by ISBN code.
 
         Mono<JsonNode> s = WebClient.create("https://maps.googleapis.com")

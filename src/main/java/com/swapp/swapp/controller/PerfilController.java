@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.swapp.swapp.GoogleBooksAPI.GeolocationAPI;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -44,11 +45,14 @@ public class PerfilController {
     }
 
     @PostMapping("/geo")
-    public String getLocation(Model model){
-        GeolocationAPI g = new GeolocationAPI();
-        JsonNode j = g.getBookDetails("59612205");
-        String s = j.get("results").get(0).get("address_components").get(4).get("long_name").toString();
-        model.addAttribute("oi", s);
+    public String getLocation(Model model, @RequestParam("oi") String oi){
+        Users u = new Users();
+        UsersService s = new UsersService();
+        u = s.setLocation(u, oi);
+        System.out.println("Latitude: " + u.getLat());
+        System.out.println("Longitude: " + u.getLongi());
+
+        model.addAttribute("oi", oi);
 
         return "geolocation";
     }

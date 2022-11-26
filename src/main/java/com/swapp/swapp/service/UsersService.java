@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.swapp.swapp.GoogleBooksAPI.GeolocationAPI;
 import com.swapp.swapp.model.Users;
 import com.swapp.swapp.repository.UsersRepository;
 
@@ -64,6 +66,21 @@ public class UsersService implements UserDetailsService{
 
     public Users findUser(String name){
         return usersRepository.findByLogin(name).orElse(null);
+    }
+
+    public Users setLocation(Users u, String zip){
+        GeolocationAPI g = new GeolocationAPI();
+
+        JsonNode json = g.getGeoDetails(zip);
+
+        Double lat = json.get("results").get(0).get("geometry").get("location").get("lat").doubleValue();
+        Double longi = json.get("results").get(0).get("geometry").get("location").get("lng").doubleValue();
+
+        u.setLat(lat);
+        u.setLongi(longi);
+        
+
+        return u;
     }
 
     

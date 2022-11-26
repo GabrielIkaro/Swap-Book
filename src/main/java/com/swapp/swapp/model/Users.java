@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -39,8 +40,25 @@ public class Users implements UserDetails, Serializable {
     @OneToMany(mappedBy="swiperUser")
     private List<Swipe> swipelist = new ArrayList<>();
 
+    private double longi;
+    
+    private double lat;
+
     
     
+    
+    public double getLongi() {
+        return longi;
+    }
+    public void setLongi(double longi) {
+        this.longi = longi;
+    }
+    public double getLat() {
+        return lat;
+    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
     public Integer getId() {
         return id;
     }
@@ -177,6 +195,7 @@ public class Users implements UserDetails, Serializable {
     public void setSwipelist(List<Swipe> swipelist) {
         this.swipelist = swipelist;
     }
+
 
     
 }

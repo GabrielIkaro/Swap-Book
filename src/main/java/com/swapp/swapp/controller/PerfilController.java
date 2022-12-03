@@ -41,16 +41,20 @@ public class PerfilController {
 
     @GetMapping("/geo")
     public String getGeoPage(Model model){
+        model.addAttribute("userDetails", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "geolocation";
     }
 
     @PostMapping("/geo")
-    public String getLocation(Model model, @RequestParam("oi") String oi){
-        Users u = new Users();
-        UsersService s = new UsersService();
-        u = s.setLocation(u, oi);
-        System.out.println("Latitude: " + u.getLat());
-        System.out.println("Longitude: " + u.getLongi());
+    public String getLocation(Model model, @RequestParam("oi") String oi, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+        u = usersService.setLocation(u, oi);
+
+        if (u != null){
+            System.out.println("Latitude: " + u.getLat());
+            System.out.println("Longitude: " + u.getLongi());
+        }
 
         model.addAttribute("oi", oi);
 

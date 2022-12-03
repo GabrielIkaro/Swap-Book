@@ -10,5 +10,5 @@ import com.swapp.swapp.model.EditoraModel;
 @Repository
 public interface EditoraRepository extends JpaRepository<EditoraModel, Integer> {
     public boolean existsByNome(String nome);
-    Optional<EditoraModel> findByNome(String nome);
+    Optional<EditoraModel> findTopByNome(String nome);
 }

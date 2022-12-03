@@ -15,7 +15,7 @@ public class CategoriaService{
 
     public CategoriaModel CategoriaFactory(String name){
         if(categoriarepository.existsByNome(name)){
-            return categoriarepository.findByNome(name).get();
+            return categoriarepository.findTopByNome(name).get();
         }else{
             CategoriaModel l = new CategoriaModel();
             l.setNome(name);

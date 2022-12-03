@@ -15,7 +15,7 @@ public class LinguaService {
 
     public LinguaModel LinguaFactory(String name){
         if(linguarepository.existsByNome(name)){
-            return linguarepository.findByNome(name).get();
+            return linguarepository.findTopByNome(name).get();
         }else{
             LinguaModel l = new LinguaModel();
             l.setNome(name);

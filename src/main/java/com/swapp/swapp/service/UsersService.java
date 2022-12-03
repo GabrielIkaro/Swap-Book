@@ -73,14 +73,32 @@ public class UsersService implements UserDetailsService{
 
         JsonNode json = g.getGeoDetails(zip);
 
-        Double lat = json.get("results").get(0).get("geometry").get("location").get("lat").doubleValue();
-        Double longi = json.get("results").get(0).get("geometry").get("location").get("lng").doubleValue();
+        json = json.get("results");
+        if(json != null){
+            json = json.get(0);
 
-        u.setLat(lat);
-        u.setLongi(longi);
+            if(json != null){
+                json = json.get("geometry");
+
+                if(json != null){
+                    json = json.get("location");
+
+                    if(json != null){
+                        Double la = json.get("lat").doubleValue();
+                        Double lo = json.get("lng").doubleValue();
+
+                        u.setLat(la);
+                        u.setLongi(lo);
+                        usersRepository.save(u);
+
+                        return u;
+                    }
+                }
+            }
+        }
+
+        return null;
         
-
-        return u;
     }
 
     

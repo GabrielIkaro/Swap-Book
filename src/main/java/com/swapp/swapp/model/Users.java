@@ -44,6 +44,12 @@ public class Users implements UserDetails, Serializable {
     
     private double lat;
 
+    private double max_dis = 50;
+
+    private String zip;
+
+    
+
     
     
     
@@ -95,6 +101,14 @@ public class Users implements UserDetails, Serializable {
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((bookslist == null) ? 0 : bookslist.hashCode());
         result = prime * result + ((swipelist == null) ? 0 : swipelist.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(longi);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(lat);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(max_dis);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((zip == null) ? 0 : zip.hashCode());
         return result;
     }
     @Override
@@ -140,6 +154,17 @@ public class Users implements UserDetails, Serializable {
             if (other.swipelist != null)
                 return false;
         } else if (!swipelist.equals(other.swipelist))
+            return false;
+        if (Double.doubleToLongBits(longi) != Double.doubleToLongBits(other.longi))
+            return false;
+        if (Double.doubleToLongBits(lat) != Double.doubleToLongBits(other.lat))
+            return false;
+        if (Double.doubleToLongBits(max_dis) != Double.doubleToLongBits(other.max_dis))
+            return false;
+        if (zip == null) {
+            if (other.zip != null)
+                return false;
+        } else if (!zip.equals(other.zip))
             return false;
         return true;
     }
@@ -194,6 +219,18 @@ public class Users implements UserDetails, Serializable {
     }
     public void setSwipelist(List<Swipe> swipelist) {
         this.swipelist = swipelist;
+    }
+    public double getMax_dis() {
+        return max_dis;
+    }
+    public void setMax_dis(double max_dis) {
+        this.max_dis = max_dis;
+    }
+    public String getZip() {
+        return zip;
+    }
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
 

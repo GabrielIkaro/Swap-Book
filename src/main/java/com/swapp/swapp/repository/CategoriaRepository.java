@@ -11,5 +11,5 @@ import com.swapp.swapp.model.*;
 public interface CategoriaRepository extends JpaRepository<CategoriaModel, Integer> {
     
     public boolean existsByNome(String name);
-    Optional<CategoriaModel> findByNome(String name);
+    Optional<CategoriaModel> findTopByNome(String name);
 }

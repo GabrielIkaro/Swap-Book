@@ -14,7 +14,7 @@ public class EditoraService {
 
     public EditoraModel EditoraFactory(String name){
         if(editorarepository.existsByNome(name)){
-            return editorarepository.findByNome(name).get();
+            return editorarepository.findTopByNome(name).get();
         }else{
             EditoraModel l = new EditoraModel();
             l.setNome(name);

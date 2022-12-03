@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -125,6 +128,11 @@ public class BooksService{
         book.setEditora(e);
 
         return book;
+    }
+
+    public Page<Books> findPage(int pageNumber, Users u){
+        Pageable pageable = PageRequest.of(pageNumber - 1,5);
+        return books_repository.findAllByUser(u,pageable);
     }
 
     public Books registerBook(Books b, Users u){

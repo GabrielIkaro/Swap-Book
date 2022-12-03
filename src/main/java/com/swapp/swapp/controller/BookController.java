@@ -1,12 +1,17 @@
 package com.swapp.swapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +36,10 @@ public class BookController {
     UsersService usersService;
 
     @GetMapping("/newbook")
-    public String getRegisterPage(Model model) {
+    public String getRegisterPage(Model model, HttpServletRequest request) {
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+        model.addAttribute("userDetails", u);
         Books b = new Books();
         b.setEditora(new EditoraModel());
         b.setCategoria(new CategoriaModel());
@@ -45,6 +53,7 @@ public class BookController {
     public String register(@ModelAttribute Books l, Model model, @RequestParam("action") String action, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
+        model.addAttribute("userDetails", u);
         
         if (action.equals("search_isbn")){
             Books b = s.findByIsbn(l.getIsbn());
@@ -61,4 +70,39 @@ public class BookController {
 
         return "livro_registro";
     }
+
+    @GetMapping("/estante")
+    public String getEstante(Model model, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+        model.addAttribute("userDetails", u);
+
+        List<Books> livros = u.getBookslist();
+        model.addAttribute("livros", livros);
+        return "estante";
+    }
+
+/*     @GetMapping("/estante")
+    public String getAllPages(Model model, HttpServletRequest request){
+        return getOnePage(model, 1, request);
+    } */
+
+/*     @GetMapping("/estante/page/{pageNumber}")
+    public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+
+        Page<Books> page = s.findPage(currentPage, u);
+
+        int totalPages = page.getTotalPages();
+        long totalitems = page.getTotalElements();
+
+        List<Books> livros = page.getContent();
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalItems", totalitems);
+        model.addAttribute("livros", livros);
+        return "estante";
+    } */
 }

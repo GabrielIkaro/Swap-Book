@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface LinguaRepository extends JpaRepository<LinguaModel, Integer> {
     
     public boolean existsByNome(String nome);
-    Optional<LinguaModel> findByNome(String nome);
+    Optional<LinguaModel> findTopByNome(String nome);
 }

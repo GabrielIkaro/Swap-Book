@@ -10,5 +10,5 @@ import com.swapp.swapp.model.AutorModel;
 @Repository
 public interface AutorRepository extends JpaRepository<AutorModel, Integer>{
     public boolean existsByNome(String nome);
-    Optional<AutorModel> findByNome(String nome);
+    Optional<AutorModel> findTopByNome(String nome);
 }

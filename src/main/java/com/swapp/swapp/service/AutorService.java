@@ -13,7 +13,7 @@ public class AutorService {
 
     public AutorModel AutorFactory(String name){
         if(autorrepository.existsByNome(name)){
-            return autorrepository.findByNome(name).get();
+            return autorrepository.findTopByNome(name).get();
         }else{
             AutorModel l = new AutorModel();
             l.setNome(name);

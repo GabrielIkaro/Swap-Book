@@ -25,10 +25,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><a class="dropdown-item" href="/user">Settings</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -38,12 +37,11 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">Menu</div>
                             <a class="nav-link" href="/perfil">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Perfil
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Preferências
@@ -68,9 +66,8 @@
                                     Novo Livro
                                 </a>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <a class="nav-link" href="/pesquisa">
+                                <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
                                 Pesquisa
                             </a>
                             <a class="nav-link">
@@ -88,6 +85,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
+                        <div>
+                            <h1>Sua localização atual: </h1>
+                            <a th:text="${zipcode}"></a>
+                        </div>
                         <h1 class="mt-4">Geolocalização: </h1>
                         <form action="/geo" method="post" th:action="@{/geo}">
                             <div>
@@ -100,12 +101,6 @@
                                 <button type="submit" class="button_send" name="action" value="adicionar">Pesquisar</button>
                             </div>
                         </form>
-
-                        <div>
-                            <tr>
-                             <td th:each="book : ${books}" th:value="${book.titulo}" th:text="${book.titulo}"></td>
-                            </tr>
-                        </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
                         </ol>

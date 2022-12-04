@@ -2,6 +2,8 @@ package com.swapp.swapp.service;
 
 import com.swapp.swapp.repository.CategoriaRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,9 @@ public class CategoriaService{
             l.setNome(name);
             return l;
         }
+    }
+
+    public List<String> findAllNames(String term){
+        return categoriarepository.findAllNomesByTerm(term);
     }
 }

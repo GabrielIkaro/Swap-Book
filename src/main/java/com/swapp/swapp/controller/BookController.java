@@ -71,7 +71,7 @@ public class BookController {
         return "livro_registro";
     }
 
-    @GetMapping("/estante")
+/*     @GetMapping("/estante")
     public String getEstante(Model model, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
@@ -80,18 +80,18 @@ public class BookController {
         List<Books> livros = u.getBookslist();
         model.addAttribute("livros", livros);
         return "estante";
-    }
-
-/*     @GetMapping("/estante")
-    public String getAllPages(Model model, HttpServletRequest request){
-        return getOnePage(model, 1, request);
     } */
 
-/*     @GetMapping("/estante/page/{pageNumber}")
+     @GetMapping("/estante")
+    public String getAllPages(Model model, HttpServletRequest request){
+        return getOnePage(model, 1, request);
+    }
+
+     @GetMapping("/estante/page/{pageNumber}")
     public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
-
+        model.addAttribute("userDetails", u);
         Page<Books> page = s.findPage(currentPage, u);
 
         int totalPages = page.getTotalPages();
@@ -104,5 +104,5 @@ public class BookController {
         model.addAttribute("totalItems", totalitems);
         model.addAttribute("livros", livros);
         return "estante";
-    } */
+    }
 }

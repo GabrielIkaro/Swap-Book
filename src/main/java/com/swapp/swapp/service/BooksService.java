@@ -135,6 +135,14 @@ public class BooksService{
         return books_repository.findAllByUser(u,pageable);
     }
 
+    public List<String> findTitles(String term){
+        return books_repository.findAllTitlesByTerm(term);
+    }
+
+    public List<String> findIsbns(String term){
+        return books_repository.findAllIsbnByTerm(term);
+    }
+
     public Books registerBook(Books b, Users u){
         b.setUser(u);
         return books_repository.save(b);

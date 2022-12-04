@@ -40,8 +40,16 @@ public class PerfilController {
     }
 
     @GetMapping("/geo")
-    public String getGeoPage(Model model){
-        model.addAttribute("userDetails", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public String getGeoPage(Model model, HttpServletRequest request){
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+        if (u.getZip() == null){
+            model.addAttribute("zipcode", "Você não possui uma localização ainda, insira abaixo.");
+
+        }else{
+            model.addAttribute("zipcode", "Sua localização atual é: " + u.getZip());
+        }
+        model.addAttribute("userDetails", u);
         return "geolocation";
     }
 
@@ -56,6 +64,14 @@ public class PerfilController {
             System.out.println("Longitude: " + u.getLongi());
         }
 
+        if (u.getZip() == null){
+            model.addAttribute("zipcode", "Você não possui uma localização ainda, insira abaixo.");
+
+        }else{
+            model.addAttribute("zipcode", "Sua localização atual é: " + u.getZip());
+        }
+
+        model.addAttribute("userDetails", u);
         model.addAttribute("oi", oi);
 
         return "geolocation";

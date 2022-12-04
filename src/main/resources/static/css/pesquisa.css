@@ -11695,7 +11695,7 @@ body {
   }
 
   .book_label {
-    font-size: 30px;
+    font-size: 15px;
   }
 
   .instructions {
@@ -11704,10 +11704,10 @@ body {
   }
 
 div.input1 {
-    width: 350px;
-    padding-left: 50px;
+    width: 200px;
+    padding-left: 30px;
     display:inline-block;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 .button_sub {
@@ -11728,7 +11728,7 @@ div.input1 {
   .book_isbn{
     padding-top: 10px;
     padding-left: 50px;
-    width: 350px;
+    width: 200px;
     display: inline-block;
   }
 
@@ -11773,4 +11773,62 @@ div.input1 {
     left: 0px;
   }
 
-  
+  .content-table{
+    border-collapse: collapse;
+    margin-top: 25px;
+    margin-bottom: 0;
+    font-size: 0.9em;
+    width: 900px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .content-table thead tr{
+    background-color:#0d6efd;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .table-th,
+  .table-td{
+    padding: 10px 15px;
+  }
+
+  .table-thbody-tr{
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .table-thbody-tr:nth-of-type(even){
+    background-color: #f3f3f3;
+  }
+
+  .table-thbody-tr:last-of-type{
+    border-bottom: 2px solid #0d6efd;
+  }
+
+  .table-thbody-tr.active-row{
+    font-weight: bold;
+    color: #0d6efd;
+  }
+
+  .btn-delete {
+    color: #fff;
+    background-color: #FF0000;
+    border-color: #FF0000;
+    top: 50%;
+    left: 50%;
+  }
+
+  .panel-footer{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3px 18px;
+    background-color: #C8C8C8;
+    margin-top: 0px;
+    font-size: 1.0em;
+    width: 900px;
+    overflow: hidden;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }

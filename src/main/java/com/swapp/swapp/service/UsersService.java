@@ -89,6 +89,7 @@ public class UsersService implements UserDetailsService{
 
                         u.setLat(la);
                         u.setLongi(lo);
+                        u.setZip(zip);
                         usersRepository.save(u);
 
                         return u;

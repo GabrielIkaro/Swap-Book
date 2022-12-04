@@ -1,5 +1,7 @@
 package com.swapp.swapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class LinguaService {
             l.setNome(name);
             return l;
         }
+    }
+
+    public List<String> fingAllNames(String term){
+        return linguarepository.findAllNomesByTerm(term);
     }
     
 }

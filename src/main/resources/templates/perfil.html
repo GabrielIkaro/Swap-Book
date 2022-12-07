@@ -105,96 +105,42 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">texto azul</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">texto amarelo</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Texto verde</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Texto vermelho</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Espaço Um
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Espaço Dois
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                        <thead>
-                                            <tr>
-                                                <th>ISBN</th>
-                                                <th>Nome</th>
-                                                <th>Autor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- <tr th:each="employee: ${employees}"> -->
-                                                <td>9781792333590</td>
-                                                <td>JUDD</td>
-                                                <td>J. D. Toombs</td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <!-- <tr th:each="employee: ${employees}"> -->
-                                                <td>9780062882318</td>
-                                                <td>Infinity Reaper</td>
-                                                <td>Adam Silvera</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
+
+
+                    <table class="content-table">
+                        <thead>
+                                    <tr>
+                                        <th class="table-th"> Título</th>
+                                        <th class="table-th">Autor</th>
+                                        <th class="table-th">Gênero</th>
+                                        <th class="table-th">Língua</th>
+                                        <th class="table-th">Editora</th>
+                                        <th class="table-th">Ações</th>
+                                    </tr>   
+                        </thead>
+                        <tbody>
+                                    <tr class="table-thbody-tr" th:each="book: ${livros}">
+                                        <td class="table-td" th:text="${book.getTitulo()}"></td>
+                                        <td class="table-td" th:text="${book.getAutor().getNome()}"></td>
+                                        <td class="table-td" th:text="${book.getCategoria().getNome()}"></td>
+                                        <td class="table-td" th:text="${book.getLingua().getNome()}"></td>
+                                        <td class="table-td" th:text="${book.getEditora().getNome()}"></td>
+                                        <td>
+                                            <form action="/delete_b" method="post" th:action="@{/delete_b}">
+                                                <input type="hidden" th:value="${book.getId()}" name="bookID">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-delete" type="submit" name="action" value="delete_book"><i class="fa-solid fa-trash"></i></button>
+                                                </div>
+                                            </form>
+                                        </td>
+
+                                    </tr>                                                  
+                        </tbody>
+                    </table>
+
+
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

@@ -1,10 +1,10 @@
 package com.swapp.swapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.swapp.swapp.GoogleBooksAPI.GeolocationAPI;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.swapp.swapp.model.Books;
 import com.swapp.swapp.model.Users;
 import com.swapp.swapp.service.UsersService;
 
@@ -24,8 +23,13 @@ public class PerfilController {
     UsersService usersService;
 
     @GetMapping("/perfil")
-    public String getRegisterPage(Model model) {
+    public String getRegisterPage(Model model, HttpServletRequest request) {
         model.addAttribute("userDetails", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        String name = request.getUserPrincipal().getName();
+        Users u = usersService.findUser(name);
+
+        List<Books> c = usersService.findCloser(u);
+        model.addAttribute("livros", c);
         return "perfil";
     }
 

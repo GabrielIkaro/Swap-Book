@@ -1,6 +1,9 @@
 package com.swapp.swapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -14,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.swapp.swapp.GoogleBooksAPI.GeolocationAPI;
+import com.swapp.swapp.model.Books;
 import com.swapp.swapp.model.Users;
+import com.swapp.swapp.repository.BooksRepository;
 import com.swapp.swapp.repository.UsersRepository;
 
 @Service
@@ -27,6 +32,9 @@ public class UsersService implements UserDetailsService{
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private BooksRepository booksRepository;
 
 
     @Transactional
@@ -100,6 +108,23 @@ public class UsersService implements UserDetailsService{
 
         return null;
         
+    }
+
+    public List<Books> findCloser(Users u){
+
+        double d = 50.0;
+        List<Users> l = usersRepository.findAllBooks(u.getLat(),u.getLongi(),u.getMax_dis());
+        List<Books> out = new ArrayList<>();
+        for (Users i : l){
+            if (i != u){
+                out = Stream.concat(out.stream(), i.getBookslist().stream()).toList();
+            }
+        }
+        //booksRepository.findCloseBooks(u.getLongi(), u.getLat(), u.getMax_dis());
+
+        //List<Books> flat = l.stream().flatMap(List::stream).collect(Collectors.toList());
+
+        return out;
     }
 
     

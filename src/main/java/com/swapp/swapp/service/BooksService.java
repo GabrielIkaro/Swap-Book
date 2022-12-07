@@ -143,6 +143,15 @@ public class BooksService{
         return books_repository.findAllIsbnByTerm(term);
     }
 
+    public Books findById(Integer id){
+        return books_repository.findById(id).orElse(null);
+    }
+
+    public void deleteBook(String id){
+        Integer i = Integer.parseInt(id);
+        books_repository.deleteById(i);
+    }
+
     public Books registerBook(Books b, Users u){
         b.setUser(u);
         return books_repository.save(b);

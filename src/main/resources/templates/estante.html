@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/estante.css" rel="stylesheet" />
+        <link href="/css/estante.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -106,9 +106,12 @@
                                                 <td class="table-td" th:text="${book.getLingua().getNome()}"></td>
                                                 <td class="table-td" th:text="${book.getEditora().getNome()}"></td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-delete" href="#"><i class="fa-solid fa-trash"></i></a>
-                                                    </div>
+                                                    <form action="/delete_b" method="post" th:action="@{/delete_b}">
+                                                        <input type="hidden" th:value="${book.getId()}" name="bookID">
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-delete" type="submit" name="action" value="delete_book"><i class="fa-solid fa-trash"></i></button>
+                                                        </div>
+                                                    </form>
                                                 </td>
 
                                             </tr>                                                  
@@ -119,7 +122,7 @@
                                 Total Items [[${totalItems}]] : Page [[${currentPage}]] of [[${totalPages}]]
                                 &nbsp; &nbsp; - &nbsp;
                                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                    <a th:href="@{'/parameters/countries/page/' + ${i}}">[[${i}]]</a>
+                                    <a th:href="@{'/estante/page/' + ${i}}">[[${i}]]</a>
                                     &nbsp; &nbsp;
                                 </span>
                             </footer>

@@ -89,6 +89,15 @@ public class BookController {
 
      @GetMapping("/estante/page/{pageNumber}")
     public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpServletRequest request){
+
+        Books b = new Books();
+        b.setEditora(new EditoraModel());
+        b.setCategoria(new CategoriaModel());
+        b.setLingua(new LinguaModel());
+        b.setAutor(new AutorModel());
+        model.addAttribute("book", b);
+
+
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
         model.addAttribute("userDetails", u);
@@ -104,5 +113,18 @@ public class BookController {
         model.addAttribute("totalItems", totalitems);
         model.addAttribute("livros", livros);
         return "estante";
+    }
+
+    @PostMapping("/delete_b")
+    public String deleteBook(Model model, @RequestParam String bookID, HttpServletRequest request){
+
+        Integer id = Integer.parseInt(bookID);
+        if(bookID != null){
+            if(s.findById(id) != null){
+                s.deleteBook(bookID);
+            }
+        }
+
+        return getAllPages(model, request);
     }
 }

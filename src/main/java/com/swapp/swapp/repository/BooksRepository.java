@@ -27,6 +27,8 @@ public interface BooksRepository extends JpaRepository<Books, Integer>{
 
     @Query(value = "SELECT DISTINCT p.isbn FROM BOOKS_TABLE p WHERE p.isbn LIKE %:term% ORDER BY p.isbn ASC", nativeQuery = true)
     List<String> findAllIsbnByTerm(@Param("term") String term);
+
+    Optional<Books> findById(Integer id);
     
 
 }

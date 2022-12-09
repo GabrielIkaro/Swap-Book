@@ -5,7 +5,6 @@ import com.swapp.swapp.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -30,8 +29,8 @@ public interface BooksRepository extends JpaRepository<Books, Integer>{
 
     Optional<Books> findById(Integer id);
 
-    @Query(value = "SELECT u.* FROM BOOKS_TABLE u, USERS_TABLE p WHERE u.user_id = p.id AND (((p.user_lat - :coordx) * (p.user_lat - :coordx)) + ((p.user_longi - :coordy) * (p.user_longi - :coordy))) <= :max", nativeQuery = true)
-    List<Books> findCloseBooks(@Param("coordx") double coordx, @Param("coordy") double coordy, @Param("max") double max);
+    @Query(value = "SELECT u.* FROM BOOKS_TABLE u, USERS_TABLE p WHERE u.user_id = p.id AND (((p.user_lat - :coordx) * (p.user_lat - :coordx)) + ((p.user_longi - :coordy) * (p.user_longi - :coordy))) <= :max AND p.id != :uID AND u.id NOT IN (SELECT s.id FROM LIKE_TABLE s WHERE s.user_id = :uID)", nativeQuery = true)
+    List<Books> findCloseBooks(@Param("coordx") double coordx, @Param("coordy") double coordy, @Param("max") double max, @Param("uID") int uID);
     
 
 }

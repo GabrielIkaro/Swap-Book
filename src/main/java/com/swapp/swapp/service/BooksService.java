@@ -1,7 +1,5 @@
 package com.swapp.swapp.service;
 
-import java.time.Year;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -153,7 +151,7 @@ public class BooksService{
     }
 
     public List<Books> findClo(Users u){
-        return books_repository.findCloseBooks(u.getLat(), u.getLongi(), u.getMax_dis());
+        return books_repository.findCloseBooks(u.getLat(), u.getLongi(), u.getMax_dis(), u.getId());
     }
 
     public Books registerBook(Books b, Users u){

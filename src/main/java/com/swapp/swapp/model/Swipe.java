@@ -24,11 +24,11 @@ public class Swipe {
     Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user.id")
+    @JoinColumn(name = "user_id")
     Users swiperUser;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "book.id")
+    @JoinColumn(name = "book_id")
     Books shownBook;
     
     Boolean liked;

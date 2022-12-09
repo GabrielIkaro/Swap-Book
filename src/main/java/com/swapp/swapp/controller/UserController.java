@@ -3,7 +3,6 @@ package com.swapp.swapp.controller;
 import com.swapp.swapp.model.*;
 import com.swapp.swapp.service.UsersService;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

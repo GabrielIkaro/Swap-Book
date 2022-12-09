@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,10 +41,11 @@ public class Users implements UserDetails, Serializable {
     @OneToMany(mappedBy="swiperUser")
     private List<Swipe> swipelist = new ArrayList<>();
 
+    @Column(name="user_longi")
     private double longi;
-    
+    @Column(name="user_lat")
     private double lat;
-
+    @Column(name="user_max")
     private double max_dis = 50;
 
     private String zip;

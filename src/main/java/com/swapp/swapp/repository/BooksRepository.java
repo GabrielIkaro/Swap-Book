@@ -30,8 +30,8 @@ public interface BooksRepository extends JpaRepository<Books, Integer>{
 
     Optional<Books> findById(Integer id);
 
-    //@Query(value = "SELECT p.book FROM BOOKS_TABLE WHERE p.book IN (SELECT  FROM USERS_TABLE u WHERE (POW((u.longi - :coordx), 2) + POW((u.lat - :coordy), 2)) <= :max)", nativeQuery = true)
-    //List<List<Books>> findCloseBooks(@Param("coordx") double coordx, @Param("coordy") double coordy, @Param("max") double max);
+    @Query(value = "SELECT u.* FROM BOOKS_TABLE u, USERS_TABLE p WHERE u.user_id = p.id AND (((p.user_lat - :coordx) * (p.user_lat - :coordx)) + ((p.user_longi - :coordy) * (p.user_longi - :coordy))) <= :max", nativeQuery = true)
+    List<Books> findCloseBooks(@Param("coordx") double coordx, @Param("coordy") double coordy, @Param("max") double max);
     
 
 }

@@ -1,5 +1,6 @@
 package com.swapp.swapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.swapp.swapp.model.Books;
 import com.swapp.swapp.model.Users;
+import com.swapp.swapp.service.BooksService;
 import com.swapp.swapp.service.UsersService;
 
 @Controller
@@ -22,13 +24,21 @@ public class PerfilController {
     @Autowired
     UsersService usersService;
 
+    @Autowired
+    BooksService booksService;
+
     @GetMapping("/perfil")
     public String getRegisterPage(Model model, HttpServletRequest request) {
         model.addAttribute("userDetails", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
+        if (u.getZip() == null){
+            List<Books> c = new ArrayList<>();
+            model.addAttribute("livros", c);
+            return "perfil";
+        }
 
-        List<Books> c = usersService.findCloser(u);
+        List<Books> c = booksService.findClo(u);
         model.addAttribute("livros", c);
         return "perfil";
     }

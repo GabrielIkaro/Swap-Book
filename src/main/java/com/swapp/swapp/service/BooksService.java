@@ -152,6 +152,10 @@ public class BooksService{
         books_repository.deleteById(i);
     }
 
+    public List<Books> findClo(Users u){
+        return books_repository.findCloseBooks(u.getLat(), u.getLongi(), u.getMax_dis());
+    }
+
     public Books registerBook(Books b, Users u){
         b.setUser(u);
         return books_repository.save(b);

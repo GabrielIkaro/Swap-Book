@@ -1,6 +1,5 @@
 package com.swapp.swapp.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users_table")
-public class Users implements UserDetails, Serializable {
+public class Users implements UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

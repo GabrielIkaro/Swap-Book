@@ -1,13 +1,11 @@
 package com.swapp.swapp.GoogleBooksAPI;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
-import io.micrometer.core.ipc.http.HttpSender.Response;
+
 import reactor.core.publisher.Mono;
 
 public class GeolocationAPI {

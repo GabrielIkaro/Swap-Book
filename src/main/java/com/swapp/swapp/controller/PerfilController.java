@@ -1,8 +1,5 @@
 package com.swapp.swapp.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.swapp.swapp.model.Books;
+
 import com.swapp.swapp.model.Users;
 import com.swapp.swapp.service.BooksService;
 import com.swapp.swapp.service.UsersService;

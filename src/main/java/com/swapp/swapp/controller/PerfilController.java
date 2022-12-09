@@ -27,22 +27,6 @@ public class PerfilController {
     @Autowired
     BooksService booksService;
 
-    @GetMapping("/perfil")
-    public String getRegisterPage(Model model, HttpServletRequest request) {
-        model.addAttribute("userDetails", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        String name = request.getUserPrincipal().getName();
-        Users u = usersService.findUser(name);
-        if (u.getZip() == null){
-            List<Books> c = new ArrayList<>();
-            model.addAttribute("livros", c);
-            return "perfil";
-        }
-
-        List<Books> c = booksService.findClo(u);
-        model.addAttribute("livros", c);
-        return "perfil";
-    }
-
     @GetMapping("/user")
     public String getUserProfile(Model model,  HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
@@ -68,10 +52,10 @@ public class PerfilController {
     }
 
     @PostMapping("/geo")
-    public String getLocation(Model model, @RequestParam("oi") String oi, HttpServletRequest request){
+    public String getLocation(Model model, @RequestParam("zip") String zip, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
-        u = usersService.setLocation(u, oi);
+        u = usersService.setLocation(u, zip);
 
         if (u != null){
             System.out.println("Latitude: " + u.getLat());
@@ -86,7 +70,7 @@ public class PerfilController {
         }
 
         model.addAttribute("userDetails", u);
-        model.addAttribute("oi", oi);
+        model.addAttribute("oi", zip);
 
         return "geolocation";
     }

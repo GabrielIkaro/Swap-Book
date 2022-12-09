@@ -65,7 +65,10 @@ public class BooksService{
         String author = "";
         JsonNode j_author = livro.at("/volumeInfo/authors");
         if (j_author != null){
-            author = j_author.get(0).asText();
+            j_author = j_author.get(0);
+            if(author != null){
+                author = j_author.asText();
+            }
         }
 
         String publisherdate = "";
@@ -87,7 +90,10 @@ public class BooksService{
         String categories = "";
         JsonNode j_categories = livro.at("/volumeInfo/categories");
         if (j_categories != null){
-            categories = j_categories.get(0).asText();
+            j_categories = j_categories.get(0);
+            if(j_categories != null){
+                categories = j_categories.asText();
+            }
         }
 
         CategoriaModel m = categoriaService.CategoriaFactory(categories);
@@ -133,6 +139,11 @@ public class BooksService{
         return books_repository.findAllByUser(u,pageable);
     }
 
+    public Page<Books> findAllPage(int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber - 1,5);
+        return books_repository.findAll(pageable);
+    }
+
     public List<String> findTitles(String term){
         return books_repository.findAllTitlesByTerm(term);
     }
@@ -151,7 +162,8 @@ public class BooksService{
     }
 
     public List<Books> findClo(Users u){
-        return books_repository.findCloseBooks(u.getLat(), u.getLongi(), u.getMax_dis(), u.getId());
+        double degrees = (u.getMax_dis()/40000)*360;
+        return books_repository.findCloseBooks(u.getLat(), u.getLongi(), degrees, u.getId());
     }
 
     public Books registerBook(Books b, Users u){

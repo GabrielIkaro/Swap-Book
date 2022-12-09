@@ -108,36 +108,40 @@
                     </div>
 
 
-                    <table class="content-table">
-                        <thead>
-                                    <tr>
-                                        <th class="table-th"> Título</th>
-                                        <th class="table-th">Autor</th>
-                                        <th class="table-th">Gênero</th>
-                                        <th class="table-th">Língua</th>
-                                        <th class="table-th">Editora</th>
-                                        <th class="table-th">Ações</th>
-                                    </tr>   
-                        </thead>
-                        <tbody>
-                                    <tr class="table-thbody-tr" th:each="book: ${livros}">
-                                        <td class="table-td" th:text="${book.getTitulo()}"></td>
-                                        <td class="table-td" th:text="${book.getAutor().getNome()}"></td>
-                                        <td class="table-td" th:text="${book.getCategoria().getNome()}"></td>
-                                        <td class="table-td" th:text="${book.getLingua().getNome()}"></td>
-                                        <td class="table-td" th:text="${book.getEditora().getNome()}"></td>
-                                        <td>
-                                            <form action="/delete_b" method="post" th:action="@{/delete_b}">
-                                                <input type="hidden" th:value="${book.getId()}" name="bookID">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-delete" type="submit" name="action" value="delete_book"><i class="fa-solid fa-trash"></i></button>
-                                                </div>
-                                            </form>
-                                        </td>
-
-                                    </tr>                                                  
-                        </tbody>
-                    </table>
+                    <div class="container">
+                        <article class="item-pane">
+                          <div class="item-preview">
+                            <div class="book"></div>
+                          </div>
+                          <div class="item-details">
+                            <h1 th:text="${livro.getTitulo()}"></h1><span class="subtitle" th:text="${livro.getAutor().getNome()}"></span>
+                            <div class="pane__section">
+                              <p th:text="${livro.getDescricao()}"></p>
+                            </div>
+                            <div class="pane__section">
+                              <dl>
+                                <dt>Editora</dt>
+                                <dd th:text="${livro.getEditora().getNome()}"></dd>
+                                <dt>Data de Publicação</dt>
+                                <dd th:text="${livro.getPublicacao()}"></dd>
+                                <dt>Língua</dt>
+                                <dd th:text="${livro.getLingua().getNome()}"></dd>
+                                <dt>Gênero</dt>
+                                <dd th:text="${livro.getCategoria().getNome()}"></dd>
+                                <dt>ISBN</dt>
+                                <dd th:text="${livro.getIsbn()}"></dd>
+                              </dl>
+                            </div>
+                            <form action="/reaction" method="post" th:action="@{/reaction}">
+                                <div class="pane__section clearfix">
+                                    <input type="hidden" th:value="${livro.getId()}" name="bookID">
+                                    <button class="button like-button" name="action" value="like">Like</button>
+                                    <button class="button dislike-button" name="action" value="dislike">Dislike</button>
+                                </div>
+                            </form>
+                          </div>
+                        </article>
+                      </div>
 
 
 

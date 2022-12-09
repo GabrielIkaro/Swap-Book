@@ -59,7 +59,7 @@ public class SearchController {
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
         model.addAttribute("userDetails", u);
-        Page<Books> page = s.findPage(currentPage, u);
+        Page<Books> page = s.findAllPage(currentPage);
 
         int totalPages = page.getTotalPages();
         long totalitems = page.getTotalElements();

@@ -80,12 +80,12 @@ public class BookController {
         return "estante";
     } */
 
-     @GetMapping("/estante")
+    @GetMapping("/estante")
     public String getAllPages(Model model, HttpServletRequest request){
         return getOnePage(model, 1, request);
     }
 
-     @GetMapping("/estante/page/{pageNumber}")
+    @GetMapping("/estante/page/{pageNumber}")
     public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage, HttpServletRequest request){
 
         Books b = new Books();

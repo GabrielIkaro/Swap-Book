@@ -49,7 +49,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<versionId>3.0.15.RELEASE</versionId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -93,7 +92,6 @@
 			<groupId>org.json</groupId>
     		<artifactId>json</artifactId>
     		<version>20220924</version>
-    		<packaging>bundle</packaging>
 		</dependency>
 	</dependencies>
 

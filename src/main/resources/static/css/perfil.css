@@ -11804,6 +11804,10 @@ dd:after {
   background-color: red;
   float: left;
 }
+
+.dislike-button:hover{
+  background-color: var(--bs-red);
+}
 .book {
   position: relative;
   width: 216px;

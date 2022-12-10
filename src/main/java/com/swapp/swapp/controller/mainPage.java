@@ -58,6 +58,11 @@ public class mainPage {
 
     @PostMapping("/reaction")
     public String getReaction(Model model, HttpServletRequest request, @RequestParam("bookID") String bookID, @RequestParam("action") String action){
+        
+        if (bookID.equals("")){
+            return getRegisterPage(model, request);
+        }
+
         int temp = Integer.parseInt(bookID);
         Books b = booksService.findById(temp);
 

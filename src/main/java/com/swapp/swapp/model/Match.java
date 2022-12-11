@@ -35,9 +35,9 @@ public class Match {
     @JoinColumn(name="book2")
     Books book2;
 
-    public Users getOtherUser(Users u){
+    public Users getOtherUser(String u){
 
-        if(u == user1){
+        if(u == user1.getLogin()){
             return this.user2;
         }
         else{
@@ -45,8 +45,8 @@ public class Match {
         }
     }
 
-    public Books getOtherBook(Users u){
-        if(u == user1){
+    public Books getOtherBook(String u){
+        if(u == user1.getLogin()){
             return this.book2;
         }
         else{
@@ -54,8 +54,8 @@ public class Match {
         }
     }
 
-    public Books getMyBook(Users u){
-        if(u == user1){
+    public Books getMyBook(String u){
+        if(u == user1.getLogin()){
             return this.book1;
         }
         else{
@@ -87,6 +87,16 @@ public class Match {
     public void setBook2(Books book2) {
         this.book2 = book2;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
     
     
 }

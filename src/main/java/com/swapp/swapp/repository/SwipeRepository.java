@@ -11,7 +11,7 @@ import com.swapp.swapp.model.*;
 @Repository
 public interface SwipeRepository extends JpaRepository<Swipe, Integer>{
 
-    @Query(value = "SELECT s.* FROM SWIPE_TABLE s WHERE s.user_id = :otherID AND s.book_id IN (SELECT b.id FROM BOOK_TABLE b WHERE b.user_id = :userID)", nativeQuery = true)
+    @Query(value = "SELECT s.* FROM LIKE_TABLE s WHERE s.user_id = :otherID AND s.book_id IN (SELECT b.id FROM BOOKS_TABLE b WHERE b.user_id = :userID)", nativeQuery = true)
     List<Swipe> isMatch(@Param("userID") Integer userID, @Param("otherID") Integer otherID);
     
 }

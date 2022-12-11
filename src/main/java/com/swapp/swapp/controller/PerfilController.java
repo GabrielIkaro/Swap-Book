@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -74,17 +75,21 @@ public class PerfilController {
     }
 
     @GetMapping("/edit")
-    public String getEditionPage(Model model, HttpServletRequest request){
+    public String getEditPage(Model model, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
+
+        
         model.addAttribute("userDetails", u);
         return "user_edit";
     }
-
+    
     @PostMapping("/edit")
-    public String getEdition(Model model, @RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String pswd, @RequestParam("max_dis") String max_dis, HttpServletRequest request){
+    public String getEdit(Model model, @RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String pswd, @RequestParam("max_dis") String max_dis, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
+        
+        System.out.println("\n\n\n\n\n" + username + "\n\n\n\n\n\n");
 
         u.setLogin(username);
         u.setEmail(email);

@@ -84,37 +84,47 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div action="/edit" method="post" th:action="@{/edit}" th:object="${user}" class="container-fluid px-4">
+                    <div>
                         <h1 class="mt-4">Configurações de Perfil: </h1>
+                        <form action="/edit" method="post" class="container-fluid px-4">
                         <div class="input1">
                             <h3>Username: </h3><br>
                             <div>
-                                <input autocomplete="username" id="username" type="text" th:value="${login}" name="username" class="form__input" placeholder="Username">
+                                <input id="username" type="text" th:value="${login}" name="username" class="form__input" placeholder="Username">
                             </div>
                             
                         </div>
+                        </form>
+                        <form action="/edit" method="post" th:action="@{/edit}" class="container-fluid px-4">
                         <div class="input1">
                             <h3>Email: </h3><br>
-                            <div><input autocomplete="email" id="email" type="email" th:value="${email}" name="email" class="form__input" placeholder="E-mail"></div>
+                            <div><input id="email" type="email" th:value="${email}" name="email" class="form__input" placeholder="E-mail"></div>
                         </div>
+                        </form>
+                        <form action="/edit" method="post" th:action="@{/edit}" class="container-fluid px-4">
                         <div class="input1">
                             <h3>Senha: </h3><br>
                             <div>
-                              <input autocomplete="password" id="password" type="password" th:value="${password}" name="password" class="form__input" placeholder="Senha">
-                            </div>
-                          </div>
-                          <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
-                          </ol>
-                          <div class="input1">
-                            <h3>Distância Máxima: </h3><br>
-                            <div>
-                              <input autocomplete="max_dis" id="max_dis" type="text" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima">
+                                <input id="password" type="password" th:value="${password}" name="password" class="form__input" placeholder="Senha">
                             </div>
                         </div>
+                        </form>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
+                        </ol>
+                        <form action="/edit" method="post" th:action="@{/edit}" class="container-fluid px-4">
+                        <div class="input1">
+                            <h3>Distância Máxima: </h3><br>
+                            <div>
+                                <input id="max_dis" type="text" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima">
+                            </div>
+                        </div>
+                        </form>
+                        <form>
                         <div>
                             <br><a class="btn btn-primary edit" href="/user">Salvar Preferências</a>
                         </div>
+                        </form>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

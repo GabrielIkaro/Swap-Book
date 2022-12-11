@@ -100,9 +100,9 @@
                                 <tbody>
                                     <div th:with="userName=${userDetails.getLogin()}">
                                             <tr class="table-thbody-tr" th:each="match: ${matchs}">
-                                                <td class="table-td" th:text="${match.getMyBook(userName).getTitulo()}"></td>
-                                                <td class="table-td" th:text="${match.getOtherUser(userName).getLogin()}"></td>
                                                 <td class="table-td" th:text="${match.getOtherBook(userName).getTitulo()}"></td>
+                                                <td class="table-td" th:text="${match.getOtherUser(userName).getLogin()}"></td>
+                                                <td class="table-td" th:text="${match.getMyBook(userName).getTitulo()}"></td>
                                                 <td class="table-td" th:text="${match.getOtherUser(userName).getEmail()}"></td>
    
                                                 <td>

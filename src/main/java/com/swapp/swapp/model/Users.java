@@ -65,7 +65,6 @@ public class Users implements UserDetails{
     public void setLat(double lat) {
         this.lat = lat;
     }
-
     public Integer getId() {
         return id;
     }

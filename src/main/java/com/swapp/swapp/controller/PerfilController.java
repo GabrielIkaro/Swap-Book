@@ -89,14 +89,7 @@ public class PerfilController {
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
 
-        System.out.println("NOVO NOME: " + l.getLogin());
-        //u.setLogin(l.get);
-        System.out.println("NOVO EMAIL: " + l.getEmail());
-        //u.setEmail(email);
-        System.out.println("NOVA SENHA: " + l.getPassword());
-        //u.setPassword(pswd);
-        System.out.println("NOVA DISTÂNCIA: " + l.getMax_dis());
-        //u.setMax_dis(Double.parseDouble(max_dis));
+        usersService.updateUser(u, l.getLogin(), l.getEmail(), l.getPassword(), l.getMax_dis());
 
         model.addAttribute("user", l);
         model.addAttribute("userDetails", u);

@@ -52,7 +52,7 @@ public class UsersService implements UserDetailsService{
         return message;
     }
 
-    public void updateUser(Users user, String login, String email, String password, String dist){
+    public void updateUser(Users user, String login, String email, String password, Double d){
         if (login != user.getLogin()){
             user.setLogin(login);
         }
@@ -65,7 +65,6 @@ public class UsersService implements UserDetailsService{
             user.setPassword(passwordEncoder.encode(password));
         }
 
-        Double d = Double. parseDouble(dist);
         if (d != user.getMax_dis()){
             user.setMax_dis(d);
         }

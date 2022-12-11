@@ -89,13 +89,13 @@
                         <div class="input1">
                             <h3>Username: </h3><br>
                             <div>
-                                <input autocomplete="username" id="username" type="text" th:field="*{login}" th:value="${login}" name="username" class="form__input" placeholder="Username">
+                                <input autocomplete="username" id="username" type="text" th:field="*{login}" th:value="${login}" name="username" class="form__input" placeholder="Username" required>
                             </div>
                             
                         </div>
                         <div class="input1">
                             <h3>Email: </h3><br>
-                            <div><input autocomplete="email" id="email" type="email" th:field="*{email}" th:value="${email}" name="email" class="form__input" placeholder="E-mail"></div>
+                            <div><input autocomplete="email" id="email" type="email" th:field="*{email}" th:value="${email}" name="email" class="form__input" placeholder="E-mail" required></div>
                         </div>
                         <div class="input1">
                             <h3>Senha: </h3><br>
@@ -109,7 +109,7 @@
                           <div class="input1">
                             <h3>Distância Máxima: </h3><br>
                             <div>
-                              <input autocomplete="max_dis" id="max_dis" type="text" th:field="*{max_dis}" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima">
+                              <input autocomplete="max_dis" id="max_dis" type="number" th:field="*{max_dis}" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima" required>
                             </div>
                         </div>
                         <div>

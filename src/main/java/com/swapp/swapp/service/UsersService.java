@@ -52,6 +52,27 @@ public class UsersService implements UserDetailsService{
         return message;
     }
 
+    public void updateUser(Users user, String login, String email, String password, String dist){
+        if (login != user.getLogin()){
+            user.setLogin(login);
+        }
+
+        if (email != user.getEmail()){
+            user.setEmail(email);
+        }
+
+        if (!password.isBlank()){
+            user.setPassword(passwordEncoder.encode(password));
+        }
+
+        Double d = Double. parseDouble(dist);
+        if (d != user.getMax_dis()){
+            user.setMax_dis(d);
+        }
+
+        usersRepository.save(user);
+    }
+
     public List<Users> readUsers(){
         return usersRepository.findAll();
     }

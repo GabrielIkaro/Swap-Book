@@ -98,12 +98,6 @@
                             <h3>Quantidade de livros deste usuário: </h3><br>
                             <div th:text="${booksquantity}"></div>
                         </div>
-                        <div>
-                            <tr>
-                                <td th:each="book : ${books}" th:value="${book.titulo}" th:text="${book.titulo}"></td>
-                                <br>
-                            </tr>
-                        </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"><div sec:authentication="name"></div></li>
                         </ol>

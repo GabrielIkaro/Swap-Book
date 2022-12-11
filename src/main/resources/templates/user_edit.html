@@ -84,18 +84,18 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div action="/edit" method="post" th:action="@{/edit}" th:object="${user}" class="container-fluid px-4">
+                    <form action="/edit" method="post" th:action="@{/edit}" th:object="${user}" class="container-fluid px-4">
                         <h1 class="mt-4">Configurações de Perfil: </h1>
                         <div class="input1">
                             <h3>Username: </h3><br>
                             <div>
-                                <input autocomplete="username" id="username" type="text" th:value="${login}" name="username" class="form__input" placeholder="Username">
+                                <input autocomplete="username" id="username" type="text" th:field="*{login}" th:value="${login}" name="username" class="form__input" placeholder="Username">
                             </div>
                             
                         </div>
                         <div class="input1">
                             <h3>Email: </h3><br>
-                            <div><input autocomplete="email" id="email" type="email" th:value="${email}" name="email" class="form__input" placeholder="E-mail"></div>
+                            <div><input autocomplete="email" id="email" type="email" th:field="*{email}" th:value="${email}" name="email" class="form__input" placeholder="E-mail"></div>
                         </div>
                         <div class="input1">
                             <h3>Senha: </h3><br>
@@ -109,13 +109,13 @@
                           <div class="input1">
                             <h3>Distância Máxima: </h3><br>
                             <div>
-                              <input autocomplete="max_dis" id="max_dis" type="text" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima">
+                              <input autocomplete="max_dis" id="max_dis" type="text" th:field="*{max_dis}" th:value="${max_dis}" name="max_dis" class="form__input" placeholder="Distância Máxima">
                             </div>
                         </div>
                         <div>
-                            <br><a class="btn btn-primary edit" href="/user">Salvar Preferências</a>
+                            <br><button type="submit" class="btn btn-primary edit">Salvar Preferências</button>
                         </div>
-                    </div>
+                    </form>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

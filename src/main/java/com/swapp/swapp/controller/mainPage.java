@@ -36,8 +36,12 @@ public class mainPage {
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
         if (u.getZip() == null){
-            List<Books> c = new ArrayList<>();
-            model.addAttribute("livros", c);
+            Books bo = new Books();
+            bo.setEditora(new EditoraModel());
+            bo.setCategoria(new CategoriaModel());
+            bo.setLingua(new LinguaModel());
+            bo.setAutor(new AutorModel());
+            model.addAttribute("livro", bo);
             return "perfil";
         }
 

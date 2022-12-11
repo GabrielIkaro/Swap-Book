@@ -38,6 +38,7 @@ public class PerfilController {
     @GetMapping("/geo")
     public String getGeoPage(Model model, HttpServletRequest request){
         String name = request.getUserPrincipal().getName();
+        System.out.println("NOME LOGIN: " + name);
         Users u = usersService.findUser(name);
         if (u.getZip() == null){
             model.addAttribute("zipcode", "Você não possui uma localização ainda, insira abaixo.");
@@ -78,19 +79,26 @@ public class PerfilController {
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
         model.addAttribute("userDetails", u);
+        model.addAttribute("user", u);
         return "user_edit";
     }
 
     @PostMapping("/edit")
-    public String getEdition(Model model, @RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String pswd, @RequestParam("max_dis") String max_dis, HttpServletRequest request){
+    public String getEdition(Model model, @ModelAttribute Users l, HttpServletRequest request){
+        System.out.println("ENTROU");
         String name = request.getUserPrincipal().getName();
         Users u = usersService.findUser(name);
 
-        u.setLogin(username);
-        u.setEmail(email);
-        u.setPassword(pswd);
-        u.setMax_dis(Double.parseDouble(max_dis));
+        System.out.println("NOVO NOME: " + l.getLogin());
+        //u.setLogin(l.get);
+        System.out.println("NOVO EMAIL: " + l.getEmail());
+        //u.setEmail(email);
+        System.out.println("NOVA SENHA: " + l.getPassword());
+        //u.setPassword(pswd);
+        System.out.println("NOVA DISTÂNCIA: " + l.getMax_dis());
+        //u.setMax_dis(Double.parseDouble(max_dis));
 
+        model.addAttribute("user", l);
         model.addAttribute("userDetails", u);
         
         return "user_edit";
